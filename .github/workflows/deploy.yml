@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 permissions:
   contents: write
@@ -11,6 +12,10 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./Landing page and dashboard
 
     steps:
       - name: Checkout repository
@@ -22,7 +27,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          cache: npm
+          cache-dependency-path: Landing page and dashboard/package-lock.json
 
       - name: Install dependencies
         run: npm install
@@ -34,5 +40,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./Landing page and dashboard/dist
           publish_branch: gh-pages
+          enable_jekyll: false
