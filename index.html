@@ -9,6 +9,22 @@
     <meta name="robots" content="noindex, nofollow" />
     <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
     
+    <script>
+      try {
+        const root = document.getElementById('root');
+        if (root) root.innerHTML = '<div id="loading" style="font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:24px">Loading…</div>';
+        window.addEventListener('error', function (e) {
+          const el = document.createElement('pre'); el.style.whiteSpace = 'pre-wrap'; el.style.color = 'red'; el.textContent = 'Error: ' + (e.message || (e.error && e.error.message) || e);
+          document.body.appendChild(el);
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+          const el = document.createElement('pre'); el.style.whiteSpace = 'pre-wrap'; el.style.color = 'red'; el.textContent = 'UnhandledRejection: ' + (e.reason && e.reason.message || e.reason || e);
+          document.body.appendChild(el);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    </script>
     <script type="module" crossorigin src="/BSIS-Evoting/assets/index-CxFcBsls.js"></script>
     <link rel="stylesheet" crossorigin href="/BSIS-Evoting/assets/index-lpmO5mkr.css">
   </head>
